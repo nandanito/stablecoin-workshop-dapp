@@ -1,4 +1,6 @@
 import styles from './page.module.css';
+import {Header} from '@stablecoin-app/ui-elements';
+import {LeftNav} from '@stablecoin-app/ui-elements'
 
 export default async function Index() {
   /*
@@ -8,6 +10,8 @@ export default async function Index() {
    */
   return (
     <div className={styles.page}>
+    <Header/>
+    <LeftNav/>
       <div className="wrapper">
         <div className="container">
           <div id="welcome">
