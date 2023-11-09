@@ -1,4 +1,5 @@
 import styles from './page.module.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {Header} from '@stablecoin-app/ui-elements';
 import {LeftNav} from '@stablecoin-app/ui-elements'
 

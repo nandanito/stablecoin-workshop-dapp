@@ -1,10 +1,9 @@
 export async function LeftNav() {
     return (
-      <>
-<ul>
-  <li>left side</li>
-</ul>
-      </>
+      <div className="row">
+          <div className="col-md-6">sdfsf</div>
+          <div className="col-md-6">sdfsf</div>
+        </div>
 
 )
   }
