@@ -1,9 +1,11 @@
+"use client";
 import styles from './page.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Header } from '@stablecoin-app/ui-elements';
 import { LeftNav } from '@stablecoin-app/ui-elements';
-import { Tab } from 'react-bootstrap';
+import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+
 
 export default async function Index() {
   return (
@@ -11,10 +13,28 @@ export default async function Index() {
       <Header />
       <div className="wrapper">
         <LeftNav />
+
         <div className="container">
           <div className="head">
-            <h1>Create New Stable Coin</h1>
+            <div className='heading-area'>
+                <h1>Create New Stable Coin</h1>
+            </div>
 
+            <Tabs
+              defaultActiveKey="profile"
+              id="uncontrolled-tab-example"
+              className="mb-3"
+            >
+              <Tab eventKey="home" title="Home">
+                Tab content for Home
+              </Tab>
+              <Tab eventKey="profile" title="Profile">
+                Tab content for Profile
+              </Tab>
+              <Tab eventKey="contact" title="Contact" disabled>
+                Tab content for Contact
+              </Tab>
+            </Tabs>
             <ul className="nav">
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="#">
