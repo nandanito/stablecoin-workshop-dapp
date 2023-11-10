@@ -396,5 +396,151 @@ summary svg {
   }
 }
 
-
-
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f1f4f8;
+}
+.nav-container .nav-logo {
+  margin: 0 50px;
+}
+.nav-container .nav-wallet button {
+  width: 262px;
+  height: 48px;
+  background: #3a3560;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  padding-top: 5%;
+  gap: 5px;
+}
+.left-side {
+  width: 20%;
+  height: 100%;
+}
+.left-side .active {
+  background: #605b85;
+  gap: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+.active li {
+  gap: 5px;
+  color: white !important;
+}
+.active img {
+  width: 13px;
+}
+.left-side .dashboard-list {
+  list-style-type: none;
+  gap: 10px;
+  display: grid;
+  border-radius: 10px;
+  margin: 50px auto;
+}
+.dashboard-list a {
+  height: 60px;
+  width: 230px;
+  border: 1px solid gray;
+  display: inline-flex;
+  border-radius: 10px;
+  text-decoration: none;
+  padding: 16px 22px;
+  color: #808191;
+  font-weight: 500;
+}
+.dashboard-list li {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  font-size: 16px;
+}
+.dashboard-list li p {
+  margin-bottom: 0;
+}
+.logout button {
+  display: flex;
+  font-size: 12px;
+  font-weight: 300;
+  gap: 10px;
+  align-items: center;
+  background: none;
+  color: #3a3560;
+  border: none;
+}
+.logout p {
+  margin: 0;
+  font-weight: 500;
+}
+.nav-container .right-nav {
+  display: flex;
+  margin: 30px 50px;
+  align-items: center;
+  gap: 10px;
+}
+.wrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 50px;
+}
+.container h1 {
+  color: #3a3560;
+  font-size: 36px;
+}
+.container .nav {
+  list-style-type: decimal-leading-zero;
+  list-style-position: inside;
+  color: #808191;
+  margin-left: -115px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  font-weight: 500;
+}
+.container .nav a {
+  color: #808191;
+  padding: 0;
+  font-weight: 500;
+}
+.container .nav .active {
+  color: #3a3560;
+  text-decoration: underline;
+  font-weight: 500;
+}
+.container .form {
+  margin-top: 35px;
+}
+form .form-control {
+  width: 400px;
+  height: 60px;
+  margin: 10px 0 20px;
+}
+form .form-select {
+  width: 400px;
+  height: 60px;
+  margin-top: 20px;
+}
+.form h4 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #222222;
+}
+form {
+  margin-top: 30px;
+}
+.form .row {
+  gap: 80px;
+}
+.form label {
+  color: #747474;
+  font-size: 14px;
+}
+.form-group label::after {
+  content: ' *';
+  color: red;
+}
