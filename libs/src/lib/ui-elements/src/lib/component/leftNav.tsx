@@ -12,7 +12,7 @@ export async function LeftNav() {
             </Link>
           </li>
           <li>
-            <Link href="/">Operate Stable Coins</Link>
+            <Link href="/operate">Operate Stable Coins</Link>
           </li>
           <li>
             <Link href="/">Role Management</Link>
