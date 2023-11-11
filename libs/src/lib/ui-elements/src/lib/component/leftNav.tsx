@@ -2,13 +2,11 @@ import Link from 'next/link';
 
 export async function LeftNav() {
   return (
-    <nav className="navbar">
-      <div className="left-side">
-        <ul className="dashboard-list">
-          <li className="create ">
+    <div className="left-nav">
+        <ul className="nav-list">
+          <li className="create">
             <Link href="/" className="active">
-              <img src="../imgs/add.svg" alt="" />
-              <p>Create Stable Coin</p>
+              <span className="plus-icon">+</span> Create Stable Coin
             </Link>
           </li>
           <li>
@@ -21,7 +19,6 @@ export async function LeftNav() {
             <Link href="/">Stable Coin Details</Link>
           </li>
         </ul>
-      </div>
-    </nav>
+    </div>
   );
 }
