@@ -13,10 +13,10 @@ export async function LeftNav() {
             <Link href="/operate">Operate Stable Coins</Link>
           </li>
           <li>
-            <Link href="/">Role Management</Link>
+            <Link href="/role">Role Management</Link>
           </li>
           <li>
-            <Link href="/">Stable Coin Details</Link>
+            <Link href="/stableCoin">Stable Coin Details</Link>
           </li>
         </ul>
     </div>

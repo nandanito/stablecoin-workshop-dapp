@@ -622,6 +622,7 @@ ul.nav-list {
 ul.nav.nav-tabs {
   gap: 30px;
   margin-bottom: 30px;
+  margin-top: 40px;
 }
 .content-area {
   width: 100%;
@@ -697,8 +698,8 @@ ul.box-area {
   background: url(../public/imgs/copy-icon.svg);
   background-repeat: no-repeat;
   background-size: 13px;
-  width: 30px;
-  height: 30px;
+  width: 15px;
+  height: 15px;
 }
 .backbtn{
   background: #fff;
@@ -799,4 +800,125 @@ ul.feed-address li {
   display: inline-block;
   padding-right: 20px;
   vertical-align: top;
+}
+.feed-box {
+  width: 31%;
+}
+ul.review-area {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 70%;
+  margin-top: 20px;
+  margin-bottom: 150px;
+  float: left;
+}
+ul.review-area li {
+  background: #F1F4F8;
+  padding: 20px;
+  box-sizing: border-box;
+  margin: 10px;
+  float: left;
+  width: 46%;
+  border: #E4E4E4 1px solid;
+  border-radius: 4px;
+}
+.review-box h3 {
+  font-size: 17px;
+  margin-bottom: 30px;
+}
+.review-box {
+  font-size: 12px;
+}
+.review-info {
+  display: flex;
+  margin: 15px 0;
+}
+.review-info span {
+  margin-left: auto;
+  font-weight: 500;
+  overflow: hidden;
+  width: 100px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-align: right;
+}
+.hash-tag {
+  margin-left: auto;
+  position: relative;
+  padding-right: 20px;
+}
+.hash-tag .copybtn {
+  top: 1px;
+}
+ul.review-area li:nth-child(2n+1) {
+  margin-left: 0;
+}
+.myacocunt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hashtag {
+  position: relative;
+  border: #ccc 1px solid;
+  padding: 5px;
+  font-size: 12px;
+  padding-right: 26px;
+  border-radius: 5px;
+}
+.hashtag label{   
+  overflow: hidden;
+  width:100px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;}
+  .hashtag .copybtn {
+    position: absolute;
+    top: 7px;
+    right: 5px;
+}
+.nav-tabs li {
+  position: relative;
+}
+.nav-tabs li:nth-child(1):before {
+  content: "01.";
+  position: absolute;
+  left: 0;
+  top: -15px;
+  width: 30px;
+  height: 30px;
+  color: #999;
+  font-size: 14px;
+}
+.nav-tabs li:nth-child(2):before {
+  content: "02.";
+  position: absolute;
+  left: 0;
+  top: -15px;
+  width: 30px;
+  height: 30px;
+  color: #999;
+  font-size: 14px;
+}
+.nav-tabs li:nth-child(3):before {
+  content: "03.";
+  position: absolute;
+  left: 0;
+  top: -15px;
+  width: 30px;
+  height: 30px;
+  color: #999;
+  font-size: 14px;
+}
+.nav-tabs li:nth-child(4):before {
+  content: "04.";
+  position: absolute;
+  left: 0;
+  top: -15px;
+  width: 30px;
+  height: 30px;
+  color: #999;
+  font-size: 14px;
 }

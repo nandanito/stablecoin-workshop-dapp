@@ -7,8 +7,8 @@ import { Header } from '@stablecoin-app/ui-elements';
 import { LeftNav } from '@stablecoin-app/ui-elements';
 
 /* eslint-disable-next-line */
-export interface OperateProps { }
-export function Operate(props: OperateProps) {
+export interface RoleProps { }
+export function RoleMgmt(props: RoleProps) {
 
   const [showPopup, setShowPopup] = useState(false);
   const handleSubmit = () => setShowPopup(!showPopup);
@@ -21,7 +21,7 @@ export function Operate(props: OperateProps) {
 
         <div className="content-area">
           <div className={styles['heading-area']} >
-                 <h1>Operate Stable Coins</h1>
+                 <h1>Role Mangement</h1>
           </div>
           <div className="col-4">
             <div className={styles['operate-box']}>
@@ -39,7 +39,7 @@ export function Operate(props: OperateProps) {
                     <select
                         className="form-select"
                         aria-label="Default select example">
-                        <option selected>Choose An Operation</option>
+                        <option selected>Select Role</option>
                         <option value="1">Cash</option>
                         <option value="2">Burn</option>
                         <option value="3">Wipe</option>
@@ -47,11 +47,11 @@ export function Operate(props: OperateProps) {
                       </select>
             </div>
             <div className={styles['cashBox']} >
-            <label>Cash</label>
+            <label>Wallet Address</label>
             <input type="number" name="cash" />
           </div>
           <div>
-            <button type="button" className={styles['submitBtn']}   >Submit</button>
+            <button type="button" className={styles['submitBtn']}   >Update Wallet Address</button>
           </div>
           </div>
           
@@ -60,4 +60,4 @@ export function Operate(props: OperateProps) {
     </div>
   );
 }
-export default Operate;
+export default RoleMgmt;
