@@ -21,16 +21,29 @@ export async function Header() {
             <p>Connect Metamask Wallet</p>
           </button>
         </div>
-    <div className='myacocunt'>
-            <div className='hashtag'><label>sdfdsfssdfr33434534353535</label><button className='copybtn'>Copy</button></div>
-            <div className="logout">
-              <button>
-                <img src="../imgs/logout.svg" alt="" />
-                <p>LOGOUT</p>
-              </button>
-            </div>
-    </div>
-        
+
+        <img
+          className="metamask-icon"
+          src="../imgs/Group.svg"
+          alt=""
+          title="Connect Metamask Wallet"
+        />
+
+        <div className="myacocunt">
+          <div className="hashtag">
+            <label>sdfdsfssdfr33434534353535</label>
+            <button className="copybtn">Copy</button>
+          </div>
+          <div className="logout">
+            <button className="logout-btn">
+              <img src="../imgs/logout.svg" alt="" />
+              <p>LOGOUT</p>
+            </button>
+            <button className="logout-icon">
+              <img src="../imgs/logout.svg" alt="" title="LOGOUT" />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
