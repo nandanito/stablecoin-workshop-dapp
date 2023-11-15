@@ -2,6 +2,7 @@
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { composePlugins, withNx } = require('@nx/next');
+const { webpack } = require('next/dist/compiled/webpack/webpack');
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
@@ -19,4 +20,13 @@ const plugins = [
   withNx,
 ];
 
-module.exports = composePlugins(...plugins)(nextConfig);
+module.exports = {
+  webpack: (/** @type {{ plugins: any[]; }} */ config) => {
+    
+    return {
+      externals: ['pino-pretty'],
+      ...config
+    }
+  },
+  ...composePlugins(...plugins)(nextConfig)
+};

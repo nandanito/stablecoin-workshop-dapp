@@ -2,18 +2,26 @@
   "name": "@stablecoin-app/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start": "nx serve dapp",
+    "build": "nx build dapp"
+  },
   "private": true,
   "dependencies": {
     "@nx/next": "17.1.1",
+    "@rainbow-me/rainbowkit": "^0.8.1",
     "@swc/helpers": "~0.5.2",
     "bootstrap": "^5.3.2",
     "next": "14.0.2",
+    "pino-pretty": "^10.2.3",
     "react": "18.2.0",
     "react-bootstrap": "^2.9.1",
     "react-dom": "18.2.0",
     "react-switch": "^7.0.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "viem": "^1.19.1",
+    "wagmi": "^0.9.4",
+    "ethers": "^5.7.2"
   },
   "devDependencies": {
     "@nx/cypress": "17.0.3",

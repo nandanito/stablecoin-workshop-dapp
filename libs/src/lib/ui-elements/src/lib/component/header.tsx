@@ -1,7 +1,8 @@
+"use client";
 import Link from 'next/link';
 import Image from 'next/image';
-
-export async function Header() {
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+export function Header() {
   return (
     <div className="nav-container">
       <div className="nav-logo">
@@ -14,36 +15,16 @@ export async function Header() {
           />
         </Link>
       </div>
+        
       <div className="right-nav">
-        <div className="nav-wallet">
-          <button>
-            <img src="../imgs/Group.svg" alt="" />
-            <p>Connect Metamask Wallet</p>
-          </button>
-        </div>
-
         <img
           className="metamask-icon"
           src="../imgs/Group.svg"
           alt=""
           title="Connect Metamask Wallet"
         />
+        <ConnectButton/>
 
-        <div className="myacocunt">
-          <div className="hashtag">
-            <label>sdfdsfssdfr33434534353535</label>
-            <button className="copybtn">Copy</button>
-          </div>
-          <div className="logout">
-            <button className="logout-btn">
-              <img src="../imgs/logout.svg" alt="" />
-              <p>LOGOUT</p>
-            </button>
-            <button className="logout-icon">
-              <img src="../imgs/logout.svg" alt="" title="LOGOUT" />
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );
