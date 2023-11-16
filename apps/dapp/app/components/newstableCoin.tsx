@@ -1,4 +1,3 @@
-'use client';
 import React, { useState } from 'react';
 import styles from './page.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,20 +7,28 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-export default function Index() {
+
+export default function NesStableCoin() {
   const [isOpen, setIsOpen] = useState(false);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [currenttabkey,setCurrenttabkey] = useState(0)
-  
-  const handleNext = (key : number) => {
-      console.log(key);
-     setCurrenttabkey(key);
+  const [currenttabkey,setCurrenttabkey] = useState('Manage Permissions');
+  const [key, setKey] = useState(0); // State to manage active tab index
+  const numberOfTabs = 4;
+  const handleNext = () => {
+    let prevKey = key;
+    console.log(prevKey);
+
+    setCurrenttabkey('est');
+  };
+
+  const handlePrevious = () => {
+    setCurrenttabkey('est');
   };
   return (
-    <>      
+    <>
       <div className={styles.page}>
         <Header />
         <div className="wrapper">
@@ -34,9 +41,9 @@ export default function Index() {
                 </div>
 
                 <Tabs
-                  defaultActiveKey={currenttabkey}
+                  defaultActiveKey={key}
                   id="uncontrolled-tab-example"
-                >
+                  >
                   <Tab eventKey={0} title="Stable coin details">
                     <Details handleNext={handleNext} />
                   </Tab>
@@ -49,7 +56,7 @@ export default function Index() {
                   <Tab eventKey={3} title="Review">
                     <Review />
                   </Tab>
-                </Tabs>
+                </Tabs>               
               </div>
             </div>
           </div>

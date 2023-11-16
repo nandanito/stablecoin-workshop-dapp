@@ -1,3 +1,4 @@
+'use client'
 import Tab from 'react-bootstrap/Tab';
 export function PermissionManagement() {
   return (
@@ -5,7 +6,6 @@ export function PermissionManagement() {
       <div className="subheading">
         <h2>PERMISSION MANAGEMENT :</h2>
       </div>
-
       <div className="row mt-4">
         <div className="col-md-6 mb-4">
           <ul className="box-area">

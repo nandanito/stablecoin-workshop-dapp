@@ -1,5 +1,19 @@
+'use client'
+import React, { useState } from 'react';
+export function Details(props : any) {
+  const [key, setKey] = useState(0); // State to manage active tab index
 
-export function Details() {
+  const handleNext = () => {
+    alert(key);
+    let nextkey = (key + 1) % numberOfTabs;
+    props.handleNext(nextkey);    
+  };
+
+  const handlePrevious = () => {
+    setKey((prevKey) => (prevKey - 1 + numberOfTabs) % numberOfTabs);
+  };
+
+  const numberOfTabs = 3; // Set the number of tabs according to your requirement
   return (
     <>
       <div className="form">
@@ -89,7 +103,7 @@ export function Details() {
         </div>
       </div>
       <div className="btn-botm-wrap">
-        <button type="submit" className="nextbtn" disabled>
+        <button type="submit" className="nextbtn" onClick={() => handleNext()}>
           Next Step <img src="../imgs/next.svg" alt="" />
         </button>
       </div>
