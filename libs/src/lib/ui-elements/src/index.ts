@@ -7,3 +7,4 @@ export * from './lib/component/tabs/Review';
 export * from './lib/component/tabs/ProofOfReserve';
 export * from './lib/component/tabs/PermissionManagement';
 export * from './lib/component/tabs/Details';
+export * from './lib/component/tabs/HomeTabs';

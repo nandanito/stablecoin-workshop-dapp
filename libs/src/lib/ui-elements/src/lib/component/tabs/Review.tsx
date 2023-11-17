@@ -1,4 +1,4 @@
-import Tab from 'react-bootstrap/Tab';
+'use client'
 export function Review() {
   return (
     <>

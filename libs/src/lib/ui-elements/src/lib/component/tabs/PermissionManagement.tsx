@@ -1,5 +1,4 @@
 'use client'
-import Tab from 'react-bootstrap/Tab';
 export function PermissionManagement() {
   return (
     <>

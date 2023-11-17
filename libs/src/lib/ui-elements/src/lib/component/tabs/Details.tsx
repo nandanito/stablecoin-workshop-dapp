@@ -1,19 +1,5 @@
 'use client'
-import React, { useState } from 'react';
-export function Details(props : any) {
-  const [key, setKey] = useState(0); // State to manage active tab index
-
-  const handleNext = () => {
-    alert(key);
-    let nextkey = (key + 1) % numberOfTabs;
-    props.handleNext(nextkey);    
-  };
-
-  const handlePrevious = () => {
-    setKey((prevKey) => (prevKey - 1 + numberOfTabs) % numberOfTabs);
-  };
-
-  const numberOfTabs = 3; // Set the number of tabs according to your requirement
+export function Details() {
   return (
     <>
       <div className="form">
@@ -23,7 +9,7 @@ export function Details(props : any) {
               <h2>STABLE COIN DETAILS :</h2>
             </div>
             <form>
-              {/* <div className="form-group">
+              <div className="form-group">
                 <label htmlFor="name">
                   Stable Coin Name <i className="imp">*</i>
                 </label>
@@ -33,7 +19,7 @@ export function Details(props : any) {
                   id="name"
                   required
                 />
-              </div> */}
+              </div>
               <div className="form-group">
                 <label htmlFor="symbol">
                   Coin Symbol <i className="imp">*</i>
