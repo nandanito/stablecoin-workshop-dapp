@@ -1150,6 +1150,9 @@ ul.review-area li:nth-child(2n + 1) {
     font-size: 12px !important;
   }
 }
+.wordwrap{
+  word-wrap: break-word;
+}
 @media screen and (max-width: 360px) {
   .nav-container .nav-logo {
     margin: 0 20px;

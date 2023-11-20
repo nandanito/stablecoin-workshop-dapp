@@ -29,7 +29,16 @@ export function OperateStableCoinDetails(props: CoinDetails) {
 
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setSelectedCoinAddress('');
+    setSelectedCoinAddressType('');
+    setCallFunctionName('');
+    setAmount(undefined);
+    setAddress('');
+
+    
+  };
   const handleShow = () => setShow(true);
   const handleSubmit = () => setShowPopup(!showPopup);
 
@@ -69,7 +78,13 @@ export function OperateStableCoinDetails(props: CoinDetails) {
   },[args]) 
   useEffect(() => {    
    console.log(writeData);
+   if(writeData){
+    handleShow();
+  }
   },[writeData]) 
+  useEffect(() => {    
+    console.log(prepareError);   
+   },[prepareError]) 
   useEffect(() => {    
     console.log(readData);
     if(readData){
@@ -145,6 +160,7 @@ const submitForm = () => {
             <select
                 className="form-select"
                 aria-label="Default select example"
+                value={selectedCoinAddress}
                 onChange={(e) => setSelectedCoinAddress(e.target.value)}
               >
                 <option selected>Select Stable Coin</option>
@@ -159,6 +175,7 @@ const submitForm = () => {
               <select
                 className="form-select"
                 aria-label="Default select example"
+                value={selectedCoinAddressType}
                 onChange={(e) => updateAddressType(e)}
               >
                 <option selected>Choose An Operation</option>
@@ -196,9 +213,13 @@ const submitForm = () => {
           </div>
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-              <Modal.Title>Current Supply</Modal.Title>
+              <Modal.Title>
+                {(selectedCoinAddressType != 'currentsupply' && selectedCoinAddressType != 'cappedsupply') ? '' : 'Current Supply'}</Modal.Title>
             </Modal.Header>
-            <Modal.Body>{Number(readData)}</Modal.Body>
+            {(selectedCoinAddressType == 'currentsupply' || selectedCoinAddressType == 'cappedsupply') && <Modal.Body>{Number(readData)}</Modal.Body>}
+            {(selectedCoinAddressType != 'currentsupply' && selectedCoinAddressType != 'cappedsupply') && 
+              <Modal.Body className='wordwrap'>{writeData?.hash}</Modal.Body>
+            }
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
                 Close
