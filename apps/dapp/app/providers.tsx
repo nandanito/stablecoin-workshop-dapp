@@ -1,21 +1,35 @@
 "use client";
 import '@rainbow-me/rainbowkit/styles.css';
-import { WagmiConfig, configureChains, createClient } from 'wagmi'
+import { WagmiConfig,Chain, configureChains, createClient } from 'wagmi'
+
 import { publicProvider } from 'wagmi/providers/public'
-import { alchemyProvider } from 'wagmi/providers/alchemy'
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
+
 import {
   getDefaultWallets,
   RainbowKitProvider,
 } from '@rainbow-me/rainbowkit';
 import { polygon, polygonMumbai } from 'viem/chains';
 
-const {chains, provider, webSocketProvider} = configureChains(
+/* const { provider, webSocketProvider} = configureChains(
   [polygon],
   [
     alchemyProvider({apiKey: "O7Lse9Y4B2UuNS8S-i1xheAe9BK4s8Xb"}),
     publicProvider()
   ]
-);
+); */
+const { chains ,provider, webSocketProvider } = configureChains(
+  [polygon],
+  [
+    jsonRpcProvider({
+      rpc: () => ({
+        http: `https://polygon-mainnet-9102.gke-india.settlemint.com/bpaas-a19Cf4367b8AE440Fc31D7c23bEe797CEA348FC4`,
+      }),
+    }),
+  ],
+)
+
+
 const {connectors} = getDefaultWallets({
   appName: 'Settlemint Stablecoin',
   chains

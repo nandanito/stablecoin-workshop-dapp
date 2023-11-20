@@ -8,3 +8,5 @@ export * from './lib/component/tabs/ProofOfReserve';
 export * from './lib/component/tabs/PermissionManagement';
 export * from './lib/component/tabs/Details';
 export * from './lib/component/tabs/HomeTabs';
+export * from './lib/component/stablecoins/StableCoinDetails';
+export * from './lib/component/operatecoins/OperateStableCoinDetails';

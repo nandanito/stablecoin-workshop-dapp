@@ -38,8 +38,18 @@ export const stablecoinAbi = [
       },
       {
         "internalType": "address",
+        "name": "burner",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
         "name": "reserveAddress",
         "type": "address"
+      },
+      {
+        "internalType": "uint8",
+        "name": "decimal",
+        "type": "uint8"
       }
     ],
     "stateMutability": "nonpayable",

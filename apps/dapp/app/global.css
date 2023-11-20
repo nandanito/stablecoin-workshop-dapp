@@ -811,7 +811,10 @@ ul.feed-address li {
 .feed-box {
   width: 25%;
 }
-ul.review-area {
+.review-details{
+  margin-top: 20px !important;
+}
+.review-area {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -820,7 +823,7 @@ ul.review-area {
   margin-bottom: 150px;
   float: left;
 }
-ul.review-area li {
+.review-area {
   background: #f1f4f8;
   padding: 20px;
   box-sizing: border-box;
