@@ -59,7 +59,7 @@ export function ProofOfReserve(props :any) {
             value={oracleFeedAddress}
             onChange={(e) => setOracleFeedAddress(e.target.value)}
           />
-          {oracleFeedAddressErr != "" && <p>{oracleFeedAddressErr}</p>}
+          {oracleFeedAddressErr != "" && <p className="error-msg">{oracleFeedAddressErr}</p>}
         </div> 
       }
       {/* end this div */}

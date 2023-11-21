@@ -92,7 +92,7 @@ export function Details(props : any) {
                   id="name"
                   onChange={(e) => setName(e.target.value)}                  
                 />
-                {nameErr != "" && <p>{nameErr}</p> }
+                {nameErr != "" && <p className="error-msg">{nameErr}</p> }
               </div>
               <div className="form-group">
                 <label htmlFor="symbol">
@@ -105,7 +105,7 @@ export function Details(props : any) {
                   name="symbol"
                   onChange={(e) => setSymbol(e.target.value)}                
                 />
-                {symbolErr != "" && <p>{symbolErr}</p> }
+                {symbolErr != "" && <p className="error-msg">{symbolErr}</p> }
               </div>
               <div className="form-group">
                 <label htmlFor="decimals">
@@ -118,7 +118,7 @@ export function Details(props : any) {
                   name="decimals"
                   onChange={(e) => setDecimals(e.target.value)}                  
                 />
-                {decimalsErr != "" && <p>{decimalsErr}</p> }
+                {decimalsErr != "" && <p className="error-msg">{decimalsErr}</p> }
               </div>            
           </div>
 
@@ -137,7 +137,7 @@ export function Details(props : any) {
                   name="supply"
                   onChange={(e) => setSupply(e.target.value)}                  
                 />
-                {supplyErr != "" && <p>{supplyErr}</p> }
+                {supplyErr != "" && <p className="error-msg">{supplyErr}</p> }
               </div>
               <div className="form-group">
                 <label htmlFor="supply">
@@ -154,7 +154,7 @@ export function Details(props : any) {
                   <option value="Finite">Finite</option>
                   <option value="Infinite">Infinite</option>
                 </select>
-                {initialSupplyErr != "" && <p>{initialSupplyErr}</p> }
+                {initialSupplyErr != "" && <p className="error-msg">{initialSupplyErr}</p> }
               </div>
               {initialSupply == "Finite" && <div className="form-group">
                 <label htmlFor="maxsupply">Max Supply </label>
@@ -165,7 +165,7 @@ export function Details(props : any) {
                   name="maxsupply"
                   onChange={(e) => setMaxSupply(e.target.value)}                  
                 />
-                {maxSupplyErr != "" && <p>{maxSupplyErr}</p> }
+                {maxSupplyErr != "" && <p className="error-msg">{maxSupplyErr}</p> }
               </div>
               }
             

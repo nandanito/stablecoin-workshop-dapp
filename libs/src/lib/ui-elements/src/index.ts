@@ -10,3 +10,4 @@ export * from './lib/component/tabs/Details';
 export * from './lib/component/tabs/HomeTabs';
 export * from './lib/component/stablecoins/StableCoinDetails';
 export * from './lib/component/operatecoins/OperateStableCoinDetails';
+export * from './lib/component/role/RoleManagement';

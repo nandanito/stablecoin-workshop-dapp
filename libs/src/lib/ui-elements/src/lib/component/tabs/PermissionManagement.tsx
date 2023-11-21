@@ -73,7 +73,7 @@ export function PermissionManagement(props : any) {
               </div>              
             </li>
           </ul>
-          {cashWalletAddressErr != "" && <p>{cashWalletAddressErr}</p> }
+          {cashWalletAddressErr != "" && <p className="error-msg">{cashWalletAddressErr}</p> }
         </div>
         <div className="col-md-6 mb-4">
           <ul className="box-area">
@@ -88,7 +88,7 @@ export function PermissionManagement(props : any) {
               
             </li>            
           </ul>
-          {wipeWalletAddressErr != "" && <p>{wipeWalletAddressErr}</p> }
+          {wipeWalletAddressErr != "" && <p className="error-msg">{wipeWalletAddressErr}</p> }
         </div>
         <div className="col-md-6 mb-4">
           <ul className="box-area">
@@ -102,7 +102,7 @@ export function PermissionManagement(props : any) {
               </div>              
             </li>
           </ul>
-          {burnWalletAddressErr != "" && <p>{burnWalletAddressErr}</p> }
+          {burnWalletAddressErr != "" && <p className="error-msg">{burnWalletAddressErr}</p> }
         </div>        
         <div className="col-md-6 mb-4">
           <ul className="box-area">
@@ -116,7 +116,7 @@ export function PermissionManagement(props : any) {
               </div>              
             </li>
           </ul>
-          {pauseWalletAddressErr != "" && <p>{pauseWalletAddressErr}</p> }
+          {pauseWalletAddressErr != "" && <p className="error-msg">{pauseWalletAddressErr}</p> }
         </div>
       </div>
       <div className="btn-botm-wrap">

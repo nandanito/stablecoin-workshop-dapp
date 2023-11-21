@@ -1153,6 +1153,9 @@ ul.review-area li:nth-child(2n + 1) {
 .wordwrap{
   word-wrap: break-word;
 }
+.error-msg{
+  color:red
+}
 @media screen and (max-width: 360px) {
   .nav-container .nav-logo {
     margin: 0 20px;

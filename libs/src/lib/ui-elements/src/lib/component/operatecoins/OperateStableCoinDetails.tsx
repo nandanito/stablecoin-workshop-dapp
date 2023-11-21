@@ -1,12 +1,13 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useContractRead,useContractWrite,usePrepareContractWrite} from 'wagmi';
+import { useContractRead,useContractWrite,usePrepareContractWrite, useWaitForTransaction} from 'wagmi';
 import { stablecoinAbi } from '../../../../../../abis/stablecoin';
 import { stablecoiFactoryAbi } from '../../../../../../abis/stablecoinFactory';
 import styles from '../../../../../../../../apps/dapp/app/operate/page.module.css';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -31,16 +32,11 @@ export function OperateStableCoinDetails(props: CoinDetails) {
 
   const handleClose = () => {
     setShow(false);
-    setSelectedCoinAddress('');
-    setSelectedCoinAddressType('');
-    setCallFunctionName('');
-    setAmount(undefined);
-    setAddress('');
-
-    
+    window.location.reload();
   };
   const handleShow = () => setShow(true);
   const handleSubmit = () => setShowPopup(!showPopup);
+  const [callSubmit, setCallSubmit] = useState(false);
 
   const { data, isError, isLoading } = useContractRead({
     address:process.env.NEXT_PUBLIC_FACTORY_CONTRACT_ADDRESS,
@@ -54,15 +50,29 @@ export function OperateStableCoinDetails(props: CoinDetails) {
     address: selectedCoinAddress,
     abi: stablecoinAbi,
     functionName: callFunctionName,
-    args:args,
+    args:[address,amount],
+    enabled: Boolean(callSubmit),
+  });
+  const { config:readConfig ,
+    error: readPrepareError,
+    isError: isReadPrepareError,
+    } = usePrepareContractWrite({
+    address: selectedCoinAddress,
+    abi: stablecoinAbi,
+    functionName: callFunctionName,
+    args:[],
   });
 
 
-  const { data:writeData,write } = useContractWrite(config);
-  const { data:readData,read } = useContractRead(config);
+  const { data:writeData,write,isLoading :writeLoading } = useContractWrite(config);
+  const {isLoading : waitLoading ,isSuccess} = useWaitForTransaction({
+    hash: writeData?.hash,
+  });
+  const { data:readData,read } = useContractRead(readConfig);
   
   useEffect(() => {    
     if(data && data?.length > 0){
+      console.log(data)
       setCoins(data);      
     }
   },[data]) 
@@ -83,10 +93,11 @@ export function OperateStableCoinDetails(props: CoinDetails) {
   }
   },[writeData]) 
   useEffect(() => {    
-    console.log(prepareError);   
+    if(isPrepareError) {
+      toast(prepareError?.message);      
+    }   
    },[prepareError]) 
-  useEffect(() => {    
-    console.log(readData);
+  useEffect(() => {        
     if(readData){
       handleShow();
     }
@@ -97,7 +108,7 @@ const updateAddressType = (ele :any) => {
     setCallFunctionName('mint');    
   }
   if(ele.target.value == 'burn'){
-    setCallFunctionName('burn');    
+    setCallFunctionName('burnFrom');    
   }
   if(ele.target.value == 'pause'){
     setCallFunctionName('pause');
@@ -126,15 +137,14 @@ const submitForm = () => {
   }else{
     setSelectedCoinAddressTypeErr('');
     if(selectedCoinAddressType == 'burn'){
-      if(amount == 0 || amount == undefined){
+      if(amount == undefined){
         error = 1;
         setAmountErr('Please enter amount')
       }
     }
   }
-  if(error == 0){
-    console.log(['cash','pause','unpause','currentsupply','cappedsupply'].indexOf(selectedCoinAddressType))
-    if(['cash','pause','unpause','currentsupply','cappedsupply'].indexOf(selectedCoinAddressType) != -1){      
+  if(error == 0){    
+    if(['pause','unpause','currentsupply','cappedsupply'].indexOf(selectedCoinAddressType) != -1){      
       setArgs([]);
     }
     if(selectedCoinAddressType == 'burn' || selectedCoinAddressType == 'cash'){
@@ -160,16 +170,15 @@ const submitForm = () => {
             <select
                 className="form-select"
                 aria-label="Default select example"
-                value={selectedCoinAddress}
                 onChange={(e) => setSelectedCoinAddress(e.target.value)}
               >
                 <option selected>Select Stable Coin</option>
                 {coins.map((address:string) => {
-                  return (<option value={address}>{address}</option>)
+                  return (<option value={address.coinAddress}>{address.name } - {address.symbol}</option>)
                   })
                 }
               </select>
-              {selectedCoinAddressErr != "" && <p>{selectedCoinAddressErr}</p> }
+              {selectedCoinAddressErr != "" && <p className="error-msg">{selectedCoinAddressErr}</p> }
             </div>
             <div className={styles['operate-box']}>
               <select
@@ -186,39 +195,42 @@ const submitForm = () => {
                 <option value="currentsupply">Current Supply</option>  
                 <option value="cappedsupply">Capped Supply</option>  
               </select>
-              {selectedCoinAddressTypeErr != "" && <p>{selectedCoinAddressTypeErr}</p> }
+              {selectedCoinAddressTypeErr != "" && <p className="error-msg">{selectedCoinAddressTypeErr}</p> }
             </div>
             {(selectedCoinAddressType == 'cash' || selectedCoinAddressType == 'burn' )   && 
             <>
               <div className={styles['cashBox']}>
                 <label>Address</label>
                 <input type="text" name="address" value={address} onChange={(e) => setAddress(e.target.value)} />
-                {amountErr != "" && <p>{amountErr}</p> }
+                {amountErr != "" && <p className="error-msg">{amountErr}</p> }
               </div>
               <br></br>
               <div className={styles['cashBox']}>
                 <label>Amount</label>
                 <input type="number" name="cash" value={amount} onChange={(e) => setAmount(+e.target.value)} />
-                {amountErr != "" && <p>{amountErr}</p> }
+                {amountErr != "" && <p className="error-msg">{amountErr}</p> }
               </div>
               </>
             }
             {(selectedCoinAddressType != 'currentsupply' &&  selectedCoinAddressType != 'cappedsupply')  &&
               <div>
-                <button type="button" className={styles['submitBtn']} onClick={() => submitForm()}>
-                  Submit
+                <button type="button" className={styles['submitBtn']} disabled={writeLoading || waitLoading} onClick={() => submitForm()}>
+                  {(writeLoading || waitLoading)? 'Submitting....' : 'Submit'}
                 </button>
               </div>
             }
           </div>
-          <Modal show={show} onHide={handleClose}>
+          <Modal show={show && (isSuccess || (selectedCoinAddressType == 'currentsupply' || selectedCoinAddressType == 'cappedsupply'))} onHide={handleClose}>
             <Modal.Header closeButton>
               <Modal.Title>
                 {(selectedCoinAddressType != 'currentsupply' && selectedCoinAddressType != 'cappedsupply') ? '' : 'Current Supply'}</Modal.Title>
             </Modal.Header>
             {(selectedCoinAddressType == 'currentsupply' || selectedCoinAddressType == 'cappedsupply') && <Modal.Body>{Number(readData)}</Modal.Body>}
             {(selectedCoinAddressType != 'currentsupply' && selectedCoinAddressType != 'cappedsupply') && 
-              <Modal.Body className='wordwrap'>{writeData?.hash}</Modal.Body>
+              <Modal.Body className='wordwrap'>
+                <p>{writeData?.hash}</p>
+                {isSuccess && <a target='_blank' href={'https://polygonscan.com/tx/'+writeData?.hash}>Click here for blockchain confirmation.</a>}  
+              </Modal.Body>
             }
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
@@ -226,6 +238,7 @@ const submitForm = () => {
               </Button>
             </Modal.Footer>
           </Modal>
+          <ToastContainer/>
         </>
   );
 }

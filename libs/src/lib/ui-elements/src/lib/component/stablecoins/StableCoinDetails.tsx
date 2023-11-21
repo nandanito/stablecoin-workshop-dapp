@@ -28,6 +28,7 @@ export function StableCoinDetails(props: CoinDetails) {
   
   useEffect(() => {    
     if(data?.length > 0){
+      console.log(data);
       setCoins(data);
       
     }
@@ -54,7 +55,7 @@ const getStablecoinDetails = (ele :any) => {
               >
                 <option selected>Select Stable Coin</option>
                 {coins.map((address:string) => {
-                  return (<option value={address}>{address}</option>)
+                  return (<option value={address.coinAddress}>{address.name } - {address.symbol}</option>)
                   })
                 }
               </select>
