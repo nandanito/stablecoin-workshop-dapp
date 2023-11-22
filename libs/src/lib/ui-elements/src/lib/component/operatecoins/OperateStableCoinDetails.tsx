@@ -50,7 +50,7 @@ export function OperateStableCoinDetails(props: CoinDetails) {
     address: selectedCoinAddress,
     abi: stablecoinAbi,
     functionName: callFunctionName,
-    args:[address,amount]    
+    args:args    
   });
   const { config:readConfig ,
     error: readPrepareError,
@@ -63,11 +63,11 @@ export function OperateStableCoinDetails(props: CoinDetails) {
   });
 
 
-  const { data:writeData,write,isLoading :writeLoading,error:writeError } = useContractWrite(config);
+  const { data:writeData,write,isLoading :writeLoading,error:writeError,isError : isWrieError } = useContractWrite(config);
   const {isLoading : waitLoading ,isSuccess} = useWaitForTransaction({
     hash: writeData?.hash,
   });
-  const { data:readData,read } = useContractRead(readConfig);
+  const { data:readData,read ,error:readError,isError : isReadError } = useContractRead(readConfig);
   
   useEffect(() => {    
     if(data && data?.length > 0){      
@@ -82,9 +82,8 @@ export function OperateStableCoinDetails(props: CoinDetails) {
         if(isPrepareError){
           toast(prepareError?.message); 
         }else{
-          write?.(); 
-        }
-        
+          write?.();        
+        }        
       }            
     }
   },[args]) 
@@ -94,10 +93,15 @@ export function OperateStableCoinDetails(props: CoinDetails) {
   }
   },[writeData]) 
   useEffect(() => {       
-    if(writeError) {      
+    if(isWrieError) {      
       toast(writeError?.message);      
     }   
-   },[writeError])    
+   },[isWrieError])    
+   useEffect(() => {       
+    if(isReadError && ['currentsupply','cappedsupply'].indexOf(selectedCoinAddressType) >= 0) {      
+      toast(readError?.message);      
+    }   
+   },[isReadError])   
   useEffect(() => {        
     if(readData){
       handleShow();
@@ -144,16 +148,16 @@ const submitForm = () => {
       }
     }
   }
-  if(error == 0){    
-    if(['pause','unpause','currentsupply','cappedsupply'].indexOf(selectedCoinAddressType) != -1){      
-      setArgs([]);
+  if(error == 0){        
+    if(['pause','unpause','currentsupply','cappedsupply'].indexOf(selectedCoinAddressType) != -1){         
+      setArgs([]);      
     }
     if(selectedCoinAddressType == 'burn' || selectedCoinAddressType == 'cash'){
       let myargs = [];
       myargs.push(address);
-      myargs.push(amount);  
-      setCallSubmit(true);    
-      setArgs(myargs);
+      myargs.push(amount); 
+      setArgs(myargs) 
+      setCallSubmit(true);             
     }  
 
     

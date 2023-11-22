@@ -12,21 +12,7 @@ export function Review(props : any) {
   const handlePrev = () => {   
     props.nextBtn(2);
   };
-  console.log(
-    [
-      props.proofofReserve.addressRequired,
-      props.proofofReserve.oracleFeedAddress == '' ? '0x0000000000000000000000000000' : props.proofofReserve.oracleFeedAddress,
-      props.stablecoinDetiails.name,
-      props.stablecoinDetiails.symbol,
-      props.stablecoinDetiails.supply,
-      props.stablecoinDetiails.maxSupply,
-      props.managementDetiails.wipeWalletAddress,
-      props.managementDetiails.pauseWalletAddress,
-      props.managementDetiails.cashWalletAddress,
-      props.managementDetiails.burnWalletAddress,
-      props.stablecoinDetiails.decimals
-   ]
-  )
+    
   const { config ,
     error: prepareError,
     isError: isPrepareError,
@@ -49,15 +35,18 @@ export function Review(props : any) {
     ],
   });
 
-  const { data,write } = useContractWrite(config);
-  const { isLoading, isSuccess } = useWaitForTransaction({
+  const { data,write,isLoading :writeLoading,error:writeError,isError : isWriteError} = useContractWrite(config);
+  const { isLoading : waitLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
-  const handleSubmit = (e :any) => {  
-    console.log(e,isLoading,isSuccess)  ;
+  const handleSubmit = (e :any) => {      
     e.preventDefault();
-    write?.();
-    console.log(prepareError);
+    if(!isPrepareError){
+      write?.();  
+    }else{
+      toast(prepareError?.message)
+    }
+      
 };
 useEffect(() => { 
   if(isSuccess) {
@@ -67,6 +56,12 @@ useEffect(() => {
     }, 2000);
   }
 },[isSuccess])
+
+useEffect(() => { 
+  if(isWriteError) {
+    toast(writeError?.message);
+  }
+},[isWriteError])
 
   return (
     <>
@@ -163,8 +158,8 @@ useEffect(() => {
         <button type="submit" className="backbtn" onClick={() => handlePrev()}>
           <img src="../imgs/back-icon.svg" alt="" /> Go Back
         </button>
-        <button type="submit" className="nextbtn" disabled={isLoading} onClick={(e) => handleSubmit(e)}>          
-          {isLoading ? 'Creating...' : 'Create Stable Coin'}         
+        <button type="submit" className="nextbtn" disabled={writeLoading || waitLoading } onClick={(e) => handleSubmit(e)}>          
+          {writeLoading || waitLoading  ? 'Creating...' : 'Create Stable Coin'}         
         </button>
       </div>
       <ToastContainer/>
