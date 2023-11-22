@@ -77,8 +77,7 @@ export function OperateStableCoinDetails(props: CoinDetails) {
     }
   },[data]) 
   useEffect(() => {    
-    if(args && args?.length >= 0){
-      console.log(args,callFunctionName,selectedCoinAddress);
+    if(args && args?.length >= 0){      
       if(selectedCoinAddressType == 'currentsupply' || selectedCoinAddressType == 'cappedsupply' ){
         read?.();
       }else{
@@ -150,7 +149,8 @@ const submitForm = () => {
     if(selectedCoinAddressType == 'burn' || selectedCoinAddressType == 'cash'){
       let myargs = [];
       myargs.push(address);
-      myargs.push(amount);      
+      myargs.push(amount);  
+      setCallSubmit(true);    
       setArgs(myargs);
     }  
 
