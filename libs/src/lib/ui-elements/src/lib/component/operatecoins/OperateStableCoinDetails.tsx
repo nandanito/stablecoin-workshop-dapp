@@ -23,7 +23,7 @@ export function OperateStableCoinDetails(props: CoinDetails) {
   const [callFunctionName,setCallFunctionName] = useState('');
   const [amount,setAmount] = useState();
   const [address,setAddress] = useState('');
-  
+  console.log("coins", selectedCoinAddress);
   const [amountErr,setAmountErr] = useState('');
   const [args,setArgs] = useState()
   const [showPopup, setShowPopup] = useState(false);
@@ -178,7 +178,7 @@ const submitForm = () => {
                 aria-label="Default select example"
                 onChange={(e) => setSelectedCoinAddress(e.target.value)}
               >
-                <option selected>Select Stable Coin</option>
+                <option selected>Select Stablecoin</option>
                 {coins.map((address:string) => {
                   return (<option value={address.coinAddress}>{address.name } - {address.symbol}</option>)
                   })
@@ -229,13 +229,13 @@ const submitForm = () => {
           <Modal show={show && (isSuccess || (selectedCoinAddressType == 'currentsupply' || selectedCoinAddressType == 'cappedsupply'))} onHide={handleClose}>
             <Modal.Header closeButton>
               <Modal.Title>
-                {(selectedCoinAddressType != 'currentsupply' && selectedCoinAddressType != 'cappedsupply') ? '' : 'Current Supply'}</Modal.Title>
+                {(selectedCoinAddressType != 'currentsupply' && selectedCoinAddressType != 'cappedsupply') ? 'Transaction Successful' : 'Details'}</Modal.Title>
             </Modal.Header>
-            {(selectedCoinAddressType == 'currentsupply' || selectedCoinAddressType == 'cappedsupply') && <Modal.Body>{Number(readData)}</Modal.Body>}
+            {(selectedCoinAddressType == 'currentsupply' || selectedCoinAddressType == 'cappedsupply') && <Modal.Body><h5>Stablecoin Supply:</h5> {Number(readData)} tokens</Modal.Body>}
             {(selectedCoinAddressType != 'currentsupply' && selectedCoinAddressType != 'cappedsupply') && 
               <Modal.Body className='wordwrap'>
-                <p>{writeData?.hash}</p>
-                {isSuccess && <a target='_blank' href={'https://polygonscan.com/tx/'+writeData?.hash}>Click here for blockchain confirmation.</a>}  
+                <h5>Blockchain Explorer:</h5>
+                {isSuccess && <a target='_blank' href={'https://polygonscan.com/tx/'+writeData?.hash}>Click here for transaction confirmation.</a>}  
               </Modal.Body>
             }
             <Modal.Footer>

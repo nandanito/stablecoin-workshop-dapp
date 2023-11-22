@@ -22,7 +22,7 @@ export function Review(props : any) {
     functionName: 'deployStablecoin',
     args: [
        props.proofofReserve.addressRequired,
-       props.proofofReserve.oracleFeedAddress == '' ? '0x0000000000000000000000000000' : props.proofofReserve.oracleFeedAddress,
+       props.proofofReserve.oracleFeedAddress == '' ? '0x0000000000000000000000000000000000000000' : props.proofofReserve.oracleFeedAddress,
        props.stablecoinDetiails.name,
        props.stablecoinDetiails.symbol,
        props.stablecoinDetiails.supply,
@@ -50,7 +50,7 @@ export function Review(props : any) {
 };
 useEffect(() => { 
   if(isSuccess) {
-    toast('Stable coin created successfully');
+    toast('Stablecoin created successfully');
     setTimeout(() => {
       router.push('stableCoin');
     }, 2000);
@@ -66,15 +66,15 @@ useEffect(() => {
   return (
     <>
       <div className="subheading">
-        <h2>STABLE COIN REVIEW :</h2>
+        <h2>STABLECOIN REVIEW :</h2>
       </div>
 
       <div className="row review-details">
           <div className='col-md-4 review-area'>              
           <div className="review-box">
-            <h3>Stable Coin Details :</h3>
+            <h3>Stablecoin Details :</h3>
             <div className="review-info">
-              <label htmlFor="">Stable Coin Details :</label>
+              <label htmlFor="">Stablecoin Details :</label>
               <span>{props.stablecoinDetiails.name}</span>
             </div>
             <div className="review-info">
@@ -89,7 +89,7 @@ useEffect(() => {
           </div>
           <div className='col-md-4 review-area'>
           <div className="review-box">
-            <h3>Stable Coin Supply Details :</h3>
+            <h3>Stablecoin Supply Details :</h3>
             <div className="review-info">
               <label htmlFor="">Initial Supply :</label>
               <span>{props.stablecoinDetiails.supply}</span>

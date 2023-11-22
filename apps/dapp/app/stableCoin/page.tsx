@@ -15,7 +15,7 @@ export default function Index() {
             <div className="content-area">
               <div className="">
                 <div className="heading-area">
-                  <h1>Create New Stable Coin</h1>
+                  <h1>Get stablecoin details</h1>
                 </div>
                   <StableCoinDetails />
               </div>

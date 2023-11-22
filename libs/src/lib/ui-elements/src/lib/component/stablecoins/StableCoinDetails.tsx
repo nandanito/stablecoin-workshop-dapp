@@ -49,7 +49,7 @@ const getStablecoinDetails = (ele :any) => {
                 aria-label="Default select example"
                 onChange={(e) => getStablecoinDetails(e)}
               >
-                <option selected>Select Stable Coin</option>
+                <option selected>Select Stablecoin</option>
                 {coins.map((address:string) => {
                   return (<option value={address.coinAddress}>{address.name } - {address.symbol}</option>)
                   })
@@ -61,9 +61,9 @@ const getStablecoinDetails = (ele :any) => {
             <div className="row review-details">
               <div className='col-md-4 review-area'>
                 <div className="review-box">
-                  <h3>Stable Coin Details :</h3>
+                  <h3>Stablecoin Details :</h3>
                   <div className="review-info">
-                    <label htmlFor="">Stable Coin Details :</label>
+                    <label htmlFor="">Stablecoin Details :</label>
                     <span>{coinDetails?.name}</span>
                   </div>
                   <div className="review-info">
@@ -78,7 +78,7 @@ const getStablecoinDetails = (ele :any) => {
               </div>
               <div className='col-md-4 review-area'>
                 <div className="review-box">
-                  <h3>Stable Coin Supply Details :</h3>
+                  <h3>Stablecoin Supply Details :</h3>
                   <div className="review-info">
                     <label htmlFor="">Initial Supply :</label>
                     <span>{coinDetails?.initialSupply ? Number(coinDetails?.initialSupply) : ''}</span>

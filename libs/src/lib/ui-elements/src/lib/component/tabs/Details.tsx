@@ -79,11 +79,11 @@ export function Details(props : any) {
         <div className="row">
           <div className="col-4">
               <div className="subheading">
-                <h2>STABLE COIN DETAILS :</h2>
+                <h2>STABLECOIN DETAILS :</h2>
               </div>            
               <div className="form-group">
                 <label htmlFor="name">
-                  Stable Coin Name <i className="imp">*</i>
+                  Stablecoin Name <i className="imp">*</i>
                 </label>
                 <input
                   type="text"
@@ -124,7 +124,7 @@ export function Details(props : any) {
 
           <div className="col-4">
             <div className="subheading">
-              <h2>STABLE COIN SUPPLY DETAILS :</h2>
+              <h2>STABLECOIN SUPPLY DETAILS :</h2>
             </div>            
               <div className="form-group">
                 <label htmlFor="supply">

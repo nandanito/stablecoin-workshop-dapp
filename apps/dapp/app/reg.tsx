@@ -41,14 +41,14 @@ export default function Index() {
             <div className="content-area">
               <div className="">
                 <div className="heading-area">
-                  <h1>Create New Stable Coin</h1>
+                  <h1>Create New Stablecoin</h1>
                 </div>
 
                 <Tabs
                   defaultActiveKey={key}
                   id="uncontrolled-tab-example"
                 >
-                  <Tab eventKey={0} title="Stable coin details">
+                  <Tab eventKey={0} title="Stablecoin details">
                     <Details />
                   </Tab>
                   <Tab eventKey={1} title="Manage Permissions">

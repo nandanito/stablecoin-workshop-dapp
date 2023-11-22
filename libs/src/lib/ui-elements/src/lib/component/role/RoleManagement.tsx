@@ -130,7 +130,7 @@ const submitForm = () => {
                 aria-label="Default select example"
                 onChange={(e) => setSelectedCoinAddress(e.target.value)}
               >
-                <option selected>Select Stable Coin</option>
+                <option selected>Select Stablecoin</option>
                 {coins.map((address:string) => {
                   return (<option value={address.coinAddress}>{address.name } - {address.symbol}</option>)
                   })
@@ -159,18 +159,18 @@ const submitForm = () => {
           </div>
           <div>
             <button type="button" className={styles['submitBtn']} disabled={writeLoading || waitLoading} onClick={() => submitForm()}  >
-              {writeLoading || waitLoading ? 'Updating....' : 'Update Wallet Address'}</button>
+              {writeLoading || waitLoading ? 'Updating....' : 'Update Role'}</button>
           </div>
           </div>
           <Modal show={show && isSuccess} onHide={handleClose}>
             <Modal.Header closeButton>
               <Modal.Title>
-                 Transaction Success
+                 Transaction Successful
               </Modal.Title>
             </Modal.Header>            
             <Modal.Body className='wordwrap'>
-              <p>{writeData?.hash}</p>
-              {isSuccess && <a target='_blank' href={'https://polygonscan.com/tx/'+writeData?.hash}>Click here for blockchain confirmation.</a>}
+              <h5>Blockchain Explorer:</h5>
+              {isSuccess && <a target='_blank' href={'https://polygonscan.com/tx/'+writeData?.hash}>Click here for transaction confirmation.</a>}
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>

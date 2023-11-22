@@ -15,7 +15,7 @@ export function Operate(props: OperateProps) {
 
         <div className="content-area">
           <div className={styles['heading-area']}>
-            <h1>Operate Stable Coins</h1>
+            <h1>Operate on Stablecoins</h1>
           </div>
           <OperateStableCoinDetails />
         </div>

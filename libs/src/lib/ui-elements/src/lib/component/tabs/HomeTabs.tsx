@@ -36,7 +36,7 @@ export function HomeTabs() {
       activeKey={TabKey}
       onSelect={(k) => setTabKey(Number(k))}
     >
-      <Tab eventKey={0} title="Stable coin details">
+      <Tab eventKey={0} title="Stablecoin details">
         
         <Details nextBtn={nextBtn} tabkey={TabKey} saveStableCointDetails = {saveStableCointDetails}/>
       </Tab>

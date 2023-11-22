@@ -10,17 +10,17 @@ export async function LeftNav() {
         <ul className="nav-list">
           <li className="create">
             <Link href="/"  className={pathname == '/' ? "active" : ""}>
-              <span className="plus-icon">+</span> Create Stable Coin
+              <span className="plus-icon">+</span> Create Stablecoin
             </Link>
           </li>
           <li>
-            <Link className={pathname == '/operate' ? "active" : ""} href="/operate">Operate Stable Coins</Link>
+            <Link className={pathname == '/operate' ? "active" : ""} href="/operate">Operate Stablecoins</Link>
           </li>
           <li>
             <Link className={pathname == '/role' ? "active" : ""} href="/role">Role Management</Link>
           </li>
           <li>
-            <Link className={pathname == '/stableCoin' ? "active" : ""} href="/stableCoin">Stable Coin Details</Link>
+            <Link className={pathname == '/stableCoin' ? "active" : ""} href="/stableCoin">Stablecoin Details</Link>
           </li>
         </ul>
     </div>
