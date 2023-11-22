@@ -59,12 +59,11 @@ export function RoleManagement(props: CoinDetails) {
     args:[
       selectedCoinAddressType,
       address
-    ],
-    enabled: Boolean(callUpdate),
+    ],    
   });
 
 
-  const { data:writeData,write,isLoading :writeLoading} = useContractWrite(config); 
+  const { data:writeData,write,isLoading :writeLoading,error:writeError} = useContractWrite(config); 
   const {isLoading : waitLoading ,isSuccess} = useWaitForTransaction({
     hash: writeData?.hash,
   });
@@ -74,18 +73,16 @@ export function RoleManagement(props: CoinDetails) {
       setCoins(data);      
     }
   },[data]);  
-  useEffect(() => {    
-   console.log(writeData); 
+  useEffect(() => {   
    if(writeData){
       handleShow();
     }  
   },[writeData]);
-  useEffect(() => {        
-    if(isPrepareError) {
-      toast(prepareError?.message);
-      setCallUpdate(false);
-    }
-   },[isPrepareError]) 
+  useEffect(() => {      
+    if(writeError) {
+      toast(writeError?.message);      
+    }   
+   },[writeError])
 
 const updateAddressType = (ele :any) => {
   setSelectedCoinAddressType(ele.target.value);  
@@ -113,11 +110,14 @@ const submitForm = () => {
   if(error == 0){   
       let myargs = [];
       myargs.push(selectedCoinAddressType);
-      myargs.push(address);
-      console.log(myargs);
+      myargs.push(address);      
       setArgs(myargs);
       setCallUpdate(true);
-      write?.();        
+      if(isPrepareError){
+        toast(prepareError?.message); 
+      }else{
+        write?.(); 
+      }      
   }
  
 }

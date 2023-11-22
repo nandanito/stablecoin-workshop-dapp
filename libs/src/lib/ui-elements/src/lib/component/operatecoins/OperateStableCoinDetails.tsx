@@ -50,8 +50,7 @@ export function OperateStableCoinDetails(props: CoinDetails) {
     address: selectedCoinAddress,
     abi: stablecoinAbi,
     functionName: callFunctionName,
-    args:[address,amount],
-    enabled: Boolean(callSubmit),
+    args:[address,amount]    
   });
   const { config:readConfig ,
     error: readPrepareError,
@@ -64,15 +63,14 @@ export function OperateStableCoinDetails(props: CoinDetails) {
   });
 
 
-  const { data:writeData,write,isLoading :writeLoading } = useContractWrite(config);
+  const { data:writeData,write,isLoading :writeLoading,error:writeError } = useContractWrite(config);
   const {isLoading : waitLoading ,isSuccess} = useWaitForTransaction({
     hash: writeData?.hash,
   });
   const { data:readData,read } = useContractRead(readConfig);
   
   useEffect(() => {    
-    if(data && data?.length > 0){
-      console.log(data)
+    if(data && data?.length > 0){      
       setCoins(data);      
     }
   },[data]) 
@@ -81,21 +79,25 @@ export function OperateStableCoinDetails(props: CoinDetails) {
       if(selectedCoinAddressType == 'currentsupply' || selectedCoinAddressType == 'cappedsupply' ){
         read?.();
       }else{
-        write?.(); 
+        if(isPrepareError){
+          toast(prepareError?.message); 
+        }else{
+          write?.(); 
+        }
+        
       }            
     }
   },[args]) 
-  useEffect(() => {    
-   console.log(writeData);
+  useEffect(() => {       
    if(writeData){
     handleShow();
   }
   },[writeData]) 
-  useEffect(() => {    
-    if(isPrepareError) {
-      toast(prepareError?.message);      
+  useEffect(() => {       
+    if(writeError) {      
+      toast(writeError?.message);      
     }   
-   },[prepareError]) 
+   },[writeError])    
   useEffect(() => {        
     if(readData){
       handleShow();
