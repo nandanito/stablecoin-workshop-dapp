@@ -27,21 +27,17 @@ export function StableCoinDetails(props: CoinDetails) {
   })
   
   useEffect(() => {    
-    if(data?.length > 0){
-      console.log(data);
-      setCoins(data);
-      
+    if(data?.length > 0){      
+      setCoins(data);      
     }
   },[data])
   useEffect(() => {  
     
-    if(coinDetails)   { 
-      console.log(coinDetails,'in effect') 
+    if(coinDetails){       
       setSelectedCoinDetails(coinDetails)
     }
   },[coinDetails])
-const getStablecoinDetails = (ele :any) => {
-  console.log(ele.target.value);
+const getStablecoinDetails = (ele :any) => {  
   setSelectedCoinAddress(ele.target.value);
 }
   return (
@@ -61,91 +57,93 @@ const getStablecoinDetails = (ele :any) => {
               </select>
             </div>
           </div>
-          <div className="row review-details">
-            <div className='col-md-4 review-area'>
-              <div className="review-box">
-                <h3>Stable Coin Details :</h3>
-                <div className="review-info">
-                  <label htmlFor="">Stable Coin Details :</label>
-                  <span>{coinDetails?.name}</span>
-                </div>
-                <div className="review-info">
-                  <label htmlFor="">Coin Symbol:</label>
-                  <span>{coinDetails?.symbol}</span>
-                </div>
-                <div className="review-info">
-                  <label htmlFor="">Decimals :</label>
-                  <span>{coinDetails?.decimal}</span>
-                </div>
-              </div>
-            </div>
-            <div className='col-md-4 review-area'>
-              <div className="review-box">
-                <h3>Stable Coin Supply Details :</h3>
-                <div className="review-info">
-                  <label htmlFor="">Initial Supply :</label>
-                  <span>{coinDetails?.initialSupply ? Number(coinDetails?.initialSupply) : ''}</span>
-                </div>
-                <div className="review-info">
-                  <label htmlFor="">Supply Type:</label>
-                  <span>{coinDetails?.maxSupply == 0 ? 'Infinite' : 'Finite'}</span>
-                </div>
-                {coinDetails?.maxSupply != 0 &&
+          {coinDetails &&  
+            <div className="row review-details">
+              <div className='col-md-4 review-area'>
+                <div className="review-box">
+                  <h3>Stable Coin Details :</h3>
                   <div className="review-info">
-                    <label htmlFor="">Max Supply :</label>
-                    <span>{coinDetails?.maxSupply ? Number(coinDetails?.maxSupply) : ''}</span>
+                    <label htmlFor="">Stable Coin Details :</label>
+                    <span>{coinDetails?.name}</span>
                   </div>
-                }                
+                  <div className="review-info">
+                    <label htmlFor="">Coin Symbol:</label>
+                    <span>{coinDetails?.symbol}</span>
+                  </div>
+                  <div className="review-info">
+                    <label htmlFor="">Decimals :</label>
+                    <span>{coinDetails?.decimal}</span>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className='col-md-4 review-area'>
-              <div className="review-box">
-                <h3>Permission Management Details :</h3>
-                <p className="wallet-address-list">Wallet Address</p>
+              <div className='col-md-4 review-area'>
+                <div className="review-box">
+                  <h3>Stable Coin Supply Details :</h3>
+                  <div className="review-info">
+                    <label htmlFor="">Initial Supply :</label>
+                    <span>{coinDetails?.initialSupply ? Number(coinDetails?.initialSupply) : ''}</span>
+                  </div>
+                  <div className="review-info">
+                    <label htmlFor="">Supply Type:</label>
+                    <span>{coinDetails?.maxSupply == 0 ? 'Infinite' : 'Finite'}</span>
+                  </div>
+                  {coinDetails?.maxSupply != 0 &&
+                    <div className="review-info">
+                      <label htmlFor="">Max Supply :</label>
+                      <span>{coinDetails?.maxSupply ? Number(coinDetails?.maxSupply) : ''}</span>
+                    </div>
+                  }                
+                </div>
+              </div>
+              <div className='col-md-4 review-area'>
+                <div className="review-box">
+                  <h3>Permission Management Details :</h3>
+                  <p className="wallet-address-list">Wallet Address</p>
 
-                <div className="review-info">
-                  <label htmlFor="">Cash In:</label>
-                  <div className="hash-tag">
-                    <span>{coinDetails?.minter}</span>{' '}
-                    <button className="copybtn">Copy</button>
+                  <div className="review-info">
+                    <label htmlFor="">Cash In:</label>
+                    <div className="hash-tag">
+                      <span>{coinDetails?.minter}</span>{' '}
+                      <button className="copybtn">Copy</button>
+                    </div>
+                  </div>
+                  <div className="review-info">
+                    <label htmlFor="">Burn:</label>
+                    <div className="hash-tag">
+                      <span>{coinDetails?.burner}</span>{' '}
+                      <button className="copybtn">Copy</button>
+                    </div>
+                  </div>
+                  <div className="review-info">
+                    <label htmlFor="">Default Admin :</label>
+                    <div className="hash-tag">
+                      <span>{coinDetails?.defaultAdmin}</span>{' '}
+                      <button className="copybtn">Copy</button>
+                    </div>
+                  </div>
+                  <div className="review-info">
+                    <label htmlFor="">Pause :</label>
+                    <div className="hash-tag">
+                      <span>{coinDetails?.pauser}</span>{' '}
+                      <button className="copybtn">Copy</button>
+                    </div>
                   </div>
                 </div>
-                <div className="review-info">
-                  <label htmlFor="">Burn:</label>
-                  <div className="hash-tag">
-                    <span>{coinDetails?.burner}</span>{' '}
-                    <button className="copybtn">Copy</button>
-                  </div>
                 </div>
-                <div className="review-info">
-                  <label htmlFor="">Default Admin :</label>
-                  <div className="hash-tag">
-                    <span>{coinDetails?.defaultAdmin}</span>{' '}
-                    <button className="copybtn">Copy</button>
-                  </div>
-                </div>
-                <div className="review-info">
-                  <label htmlFor="">Pause :</label>
-                  <div className="hash-tag">
-                    <span>{coinDetails?.pauser}</span>{' '}
-                    <button className="copybtn">Copy</button>
-                  </div>
-                </div>
-              </div>
-              </div>
-            <div className='col-md-4 review-area'>
-              <div className="review-box">
-                <h3>Proof Of Reserve Details :</h3>
-                <div className="review-info">
-                  <label htmlFor="">Oracle Feed Address:</label>
-                  <div className="hash-tag">
-                    <span>{coinDetails?.feedAddress}</span>{' '}
-                    <button className="copybtn">Copy</button>
+              <div className='col-md-4 review-area'>
+                <div className="review-box">
+                  <h3>Proof Of Reserve Details :</h3>
+                  <div className="review-info">
+                    <label htmlFor="">Oracle Feed Address:</label>
+                    <div className="hash-tag">
+                      <span>{coinDetails?.feedAddress}</span>{' '}
+                      <button className="copybtn">Copy</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          }
         </>
   );
 }
