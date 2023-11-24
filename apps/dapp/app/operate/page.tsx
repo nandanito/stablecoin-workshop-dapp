@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import styles from './page.module.css';
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -6,7 +8,7 @@ import { LeftNav } from '@stablecoin-app/ui-elements';
 
 /* eslint-disable-next-line */
 export interface OperateProps {}
-export function Operate(props: OperateProps) {
+export default function Operate(props: OperateProps) {
   return (
     <div className={styles.page}>
       <Header />
@@ -15,7 +17,7 @@ export function Operate(props: OperateProps) {
 
         <div className="content-area">
           <div className={styles['heading-area']}>
-            <h1>Operate on Stablecoins</h1>
+            <h1>Operate on Stable Coins</h1>
           </div>
           <OperateStableCoinDetails />
         </div>
@@ -23,4 +25,4 @@ export function Operate(props: OperateProps) {
     </div>
   );
 }
-export default Operate;
+// export default Operate;

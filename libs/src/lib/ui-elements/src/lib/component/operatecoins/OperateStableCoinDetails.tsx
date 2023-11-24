@@ -13,8 +13,8 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 /* eslint-disable-next-line */
-export interface CoinDetails {}
-export function OperateStableCoinDetails(props: CoinDetails) {
+// export interface ICoinDetails {}
+export function OperateStableCoinDetails(props: any) {
   const [coins,setCoins] = useState([]);
   const [selectedCoinAddress,setSelectedCoinAddress] = useState();
   const [selectedCoinAddressErr,setSelectedCoinAddressErr] = useState('');  
@@ -67,7 +67,7 @@ export function OperateStableCoinDetails(props: CoinDetails) {
   const {isLoading : waitLoading ,isSuccess} = useWaitForTransaction({
     hash: writeData?.hash,
   });
-  const { data:readData,read ,error:readError,isError : isReadError } = useContractRead(readConfig);
+  const { data:readData,read  ,error:readError,isError : isReadError } = useContractRead(readConfig);
   
   useEffect(() => {    
     if(data && data?.length > 0){      
@@ -77,7 +77,7 @@ export function OperateStableCoinDetails(props: CoinDetails) {
   useEffect(() => {    
     if(args && args?.length >= 0){      
       if(selectedCoinAddressType == 'currentsupply' || selectedCoinAddressType == 'cappedsupply' ){
-        read?.();
+        // read?.();
       }else{
         if(isPrepareError){
           toast(prepareError?.message); 

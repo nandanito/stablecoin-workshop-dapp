@@ -6,8 +6,8 @@ import { stablecoiFactoryAbi } from '../../../../../../abis/stablecoinFactory';
 
 
 /* eslint-disable-next-line */
-export interface CoinDetails {}
-export function StableCoinDetails(props: CoinDetails) {
+export interface ICoinDetails {}
+export function StableCoinDetails(props: ICoinDetails) {
   const [coins,setCoins] = useState([]);
   const [selectedCoinAddress,setSelectedCoinAddress] = useState();
   const [selectedCoinDetails,setSelectedCoinDetails] = useState({});

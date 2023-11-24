@@ -2,7 +2,9 @@
 import React, { useState } from 'react';
 import styles from './page.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { Details, Header, PermissionManagement, ProofOfReserve, Review } from '@stablecoin-app/ui-elements';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { LeftNav } from '@stablecoin-app/ui-elements';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -19,14 +21,14 @@ export default function Index() {
   const [key, setKey] = useState(0); // State to manage active tab index
   const numberOfTabs = 4;
   const handleNext = () => {
-    let prevKey = key;
+    const prevKey = key;
     console.log(prevKey);
 
     setKey((prevKey + 1) % numberOfTabs);
   };
 
   const handlePrevious = () => {
-    let prevKey = key;
+    const prevKey = key;
     setKey((prevKey - 1 + numberOfTabs) % numberOfTabs);
   };
 

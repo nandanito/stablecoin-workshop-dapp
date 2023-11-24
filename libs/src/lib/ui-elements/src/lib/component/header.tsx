@@ -14,11 +14,11 @@ import { useEffect } from 'react';
 export function Header() {
   const account = getAccount();
   const { openConnectModal } = useConnectModal();
-
+	
 
  useEffect(() => {
-  if(!account.address){    
-    openConnectModal();
+  if(!account?.address){    
+    openConnectModal ? openConnectModal() : () => {};
   }
  },[account])
 

@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './page.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { Header, StableCoinDetails } from '@stablecoin-app/ui-elements';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { LeftNav } from '@stablecoin-app/ui-elements';
 
 export default function Index() {

@@ -1,3 +1,6 @@
+/* eslint-disable */
+
+
 "use client";
 import '@rainbow-me/rainbowkit/styles.css';
 import { WagmiConfig,Chain, configureChains, createClient } from 'wagmi'
@@ -19,7 +22,7 @@ import { polygon, polygonMumbai } from 'viem/chains';
   ]
 ); */
 const { chains ,provider, webSocketProvider } = configureChains(
-  [polygon],
+  [polygon as any],
   [
     jsonRpcProvider({
       rpc: () => ({

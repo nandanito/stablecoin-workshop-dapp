@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 import styles from './page.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';

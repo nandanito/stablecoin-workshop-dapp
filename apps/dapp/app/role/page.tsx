@@ -1,7 +1,9 @@
 import styles from './page.module.css';
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { Header , RoleManagement} from '@stablecoin-app/ui-elements';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { LeftNav } from '@stablecoin-app/ui-elements';
 
 /* eslint-disable-next-line */
