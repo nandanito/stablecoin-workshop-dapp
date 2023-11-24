@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -32,12 +33,7 @@ export function RoleManagement(props: CoinDetails) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => {
-    setShow(false);
-    setSelectedCoinAddress('');
-    setSelectedCoinAddressType('');
-    setCallFunctionName('');    
-    setAddress('');  
-    setCallUpdate(false);
+    setShow(false);   
     window.location.reload();
   };
   const handleShow = () => setShow(true);

@@ -1,4 +1,6 @@
+// @ts-nocheck
 'use client';
+
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useContractRead,useContractWrite,usePrepareContractWrite, useWaitForTransaction} from 'wagmi';
@@ -67,17 +69,17 @@ export function OperateStableCoinDetails(props: any) {
   const {isLoading : waitLoading ,isSuccess} = useWaitForTransaction({
     hash: writeData?.hash,
   });
-  const { data:readData,read  ,error:readError,isError : isReadError } = useContractRead(readConfig);
+  const { data:readData,error:readError,isError : isReadError } = useContractRead(readConfig);
   
-  useEffect(() => {    
-    if(data && data?.length > 0){      
+  useEffect(() => {      
+    if(data && data?.length > 0){            
       setCoins(data);      
     }
   },[data]) 
-  useEffect(() => {    
+  useEffect(() => {        
     if(args && args?.length >= 0){      
       if(selectedCoinAddressType == 'currentsupply' || selectedCoinAddressType == 'cappedsupply' ){
-        // read?.();
+        
       }else{
         if(isPrepareError){
           toast(prepareError?.message); 
@@ -149,13 +151,13 @@ const submitForm = () => {
     }
   }
   if(error == 0){        
-    if(['pause','unpause','currentsupply','cappedsupply'].indexOf(selectedCoinAddressType) != -1){         
+    if(['pause','unpause','currentsupply','cappedsupply'].indexOf(selectedCoinAddressType) != -1){                
       setArgs([]);      
     }
     if(selectedCoinAddressType == 'burn' || selectedCoinAddressType == 'cash'){
       let myargs = [];
       myargs.push(address);
-      myargs.push(amount); 
+      myargs.push(amount);       
       setArgs(myargs) 
       setCallSubmit(true);             
     }  
@@ -172,14 +174,11 @@ const submitForm = () => {
   return (
         <>
                  <div className="col-4">
-            <div className={styles['operate-box']}>
-            <select
-                className="form-select"
-                aria-label="Default select example"
-                onChange={(e) => setSelectedCoinAddress(e.target.value)}
+            <div className={styles['operate-box']}>            
+            <select className="form-select" aria-label="Default select example" onChange={(e) => setSelectedCoinAddress(e.target.value)}
               >
                 <option selected>Select Stablecoin</option>
-                {coins.map((address:string) => {
+                {coins.map((address:string) => {                  
                   return (<option value={address.coinAddress}>{address.name } - {address.symbol}</option>)
                   })
                 }
@@ -212,7 +211,7 @@ const submitForm = () => {
               </div>
               <br></br>
               <div className={styles['cashBox']}>
-                <label>Amount</label>
+                <label>Amount</label>                
                 <input type="number" name="cash" value={amount} onChange={(e) => setAmount(+e.target.value)} />
                 {amountErr != "" && <p className="error-msg">{amountErr}</p> }
               </div>

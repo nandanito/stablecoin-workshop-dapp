@@ -8,7 +8,7 @@ import { LeftNav } from '@stablecoin-app/ui-elements';
 
 /* eslint-disable-next-line */
 export interface OperateProps {}
-export default function RoleMgmt(props: OperateProps) {
+export default function Index(props: OperateProps) {
   return (
     <div className={styles.page}>
       <Header />

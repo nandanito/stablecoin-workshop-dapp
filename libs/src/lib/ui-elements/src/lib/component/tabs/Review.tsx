@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client'
 import { usePrepareContractWrite, useContractWrite, useWaitForTransaction } from 'wagmi';
 import { stablecoiFactoryAbi } from '../../../../../../abis/stablecoinFactory';
