@@ -63,6 +63,10 @@ const getStablecoinDetails = (ele :any) => {
               <div className='col-md-4 review-area'>
                 <div className="review-box">
                   <h3>Stablecoin Details :</h3>
+                  <div className="review-info address">
+                    <label htmlFor="">Coin Address:</label>
+                    <span>{coinDetails?.coinAddress}</span>
+                  </div>
                   <div className="review-info">
                     <label htmlFor="">Stablecoin Details :</label>
                     <span>{coinDetails?.name}</span>

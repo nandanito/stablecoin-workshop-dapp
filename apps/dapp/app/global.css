@@ -1156,6 +1156,9 @@ ul.review-area li:nth-child(2n + 1) {
 .error-msg{
   color:red
 }
+.address span {
+  width: unset;
+}
 @media screen and (max-width: 360px) {
   .nav-container .nav-logo {
     margin: 0 20px;
