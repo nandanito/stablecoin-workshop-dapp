@@ -1,9 +1,10 @@
 // @ts-nocheck
-'use client'
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
+import { ethers } from 'ethers';
 
-export function Details(props : any) {
+export function Details(props: any) {
   const [name, setName] = useState('');
   const [nameErr, setNameErr] = useState('');
   const [symbol, setSymbol] = useState('');
@@ -17,71 +18,75 @@ export function Details(props : any) {
   const [maxSupply, setMaxSupply] = useState('');
   const [maxSupplyErr, setMaxSupplyErr] = useState('');
 
-  
-  const handleNext = (formdata : FormData) => {    
+  const handleNext = (formdata: FormData) => {
     let error = 0;
-    if(name == ''){
+    if (name == '') {
       setNameErr('Please enter name');
       error = 1;
-    }else{
+    } else {
       setNameErr('');
     }
-    if(symbol == ''){
+    if (symbol == '') {
       setSymbolErr('Please enter symbol');
       error = 1;
-    }else{
+    } else {
       setSymbolErr('');
     }
-    if(decimals == ''){
+    if (decimals == '') {
       setDecimalsErr('Please enter decimal');
       error = 1;
-    }else{
+    } else {
       setDecimalsErr('');
     }
-    if(supply == ''){
+    if (supply == '') {
       setSupplyErr('Please enter supply');
       error = 1;
-    }else{
+    } else {
       setSupplyErr('');
     }
-    if(initialSupply == ''){      
+    if (initialSupply == '') {
       setInitialSupplyErr('Please enter inial supply');
       error = 1;
-    }else{
-      if(initialSupply == "Finite"){
-        if(maxSupply == ''){
+    } else {
+      if (initialSupply == 'Finite') {
+        if (maxSupply == '') {
           setMaxSupplyErr('Please enter max supply');
           error = 1;
-        }else{
+        } else {
           setMaxSupplyErr('');
         }
       }
       setInitialSupplyErr('');
     }
-    
-    console.log(initialSupply)
-    if(error == 0){
+
+    console.log(initialSupply);
+    if (error == 0) {
       let data = {
-        name : name,
-        symbol : symbol,
-        decimals : decimals,
-        supply : supply,
-        initialSupply : initialSupply,
-        maxSupply : maxSupply
-      }
+        name: name,
+        symbol: symbol,
+        decimals: decimals,
+        supply: supply,
+        supplyInWei: ethers.utils.parseUnits(supply, decimals),
+        initialSupply: initialSupply,
+        maxSupplyInWei: ethers.utils.parseUnits(
+          maxSupply ? maxSupply : '0',
+          decimals
+        ),
+        maxSupply: maxSupply,
+      };
       props.saveStableCointDetails(data);
     }
     //props.nextBtn(1);
   };
   return (
     <>
-    <form action={handleNext}>
-      <div className="form">
-        <div className="row">
-          <div className="col-4">
+      <form action={handleNext}>
+        <div className="form">
+          <div className="row">
+            <div className="col-4">
               <div className="subheading">
                 <h2>STABLECOIN DETAILS :</h2>
-              </div>            
+              </div>
               <div className="form-group">
                 <label htmlFor="name">
                   Stablecoin Name <i className="imp">*</i>
@@ -91,9 +96,9 @@ export function Details(props : any) {
                   className="form-control"
                   name="name"
                   id="name"
-                  onChange={(e) => setName(e.target.value)}                  
+                  onChange={(e) => setName(e.target.value)}
                 />
-                {nameErr != "" && <p className="error-msg">{nameErr}</p> }
+                {nameErr != '' && <p className="error-msg">{nameErr}</p>}
               </div>
               <div className="form-group">
                 <label htmlFor="symbol">
@@ -104,9 +109,9 @@ export function Details(props : any) {
                   className="form-control"
                   id="symbol"
                   name="symbol"
-                  onChange={(e) => setSymbol(e.target.value)}                
+                  onChange={(e) => setSymbol(e.target.value)}
                 />
-                {symbolErr != "" && <p className="error-msg">{symbolErr}</p> }
+                {symbolErr != '' && <p className="error-msg">{symbolErr}</p>}
               </div>
               <div className="form-group">
                 <label htmlFor="decimals">
@@ -117,37 +122,39 @@ export function Details(props : any) {
                   className="form-control"
                   id="decimals"
                   name="decimals"
-                  onChange={(e) => setDecimals(e.target.value)}                  
+                  onChange={(e) => setDecimals(e.target.value)}
                 />
-                {decimalsErr != "" && <p className="error-msg">{decimalsErr}</p> }
-              </div>            
-          </div>
+                {decimalsErr != '' && (
+                  <p className="error-msg">{decimalsErr}</p>
+                )}
+              </div>
+            </div>
 
-          <div className="col-4">
-            <div className="subheading">
-              <h2>STABLECOIN SUPPLY DETAILS :</h2>
-            </div>            
+            <div className="col-4">
+              <div className="subheading">
+                <h2>STABLECOIN SUPPLY DETAILS :</h2>
+              </div>
               <div className="form-group">
                 <label htmlFor="supply">
-                  Initial Supply <i className="imp">*</i>
+                  Collateral Supply <i className="imp">*</i>
                 </label>
                 <input
                   type="text"
                   className="form-control"
                   id="supply"
                   name="supply"
-                  onChange={(e) => setSupply(e.target.value)}                  
+                  onChange={(e) => setSupply(e.target.value)}
                 />
-                {supplyErr != "" && <p className="error-msg">{supplyErr}</p> }
+                {supplyErr != '' && <p className="error-msg">{supplyErr}</p>}
               </div>
               <div className="form-group">
                 <label htmlFor="supply">
-                 Supply Type<i className="imp">*</i>
+                  Supply Type<i className="imp">*</i>
                 </label>
                 <select
                   className="form-select"
                   aria-label="Default select example"
-                  defaultValue={""}
+                  defaultValue={''}
                   name="initialSupply"
                   onChange={(e) => setInitialSupply(e.target.value)}
                 >
@@ -155,29 +162,33 @@ export function Details(props : any) {
                   <option value="Finite">Finite</option>
                   <option value="Infinite">Infinite</option>
                 </select>
-                {initialSupplyErr != "" && <p className="error-msg">{initialSupplyErr}</p> }
+                {initialSupplyErr != '' && (
+                  <p className="error-msg">{initialSupplyErr}</p>
+                )}
               </div>
-              {initialSupply == "Finite" && <div className="form-group">
-                <label htmlFor="maxsupply">Max Supply </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="maxsupply"
-                  name="maxsupply"
-                  onChange={(e) => setMaxSupply(e.target.value)}                  
-                />
-                {maxSupplyErr != "" && <p className="error-msg">{maxSupplyErr}</p> }
-              </div>
-              }
-            
+              {initialSupply == 'Finite' && (
+                <div className="form-group">
+                  <label htmlFor="maxsupply">Max Supply </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="maxsupply"
+                    name="maxsupply"
+                    onChange={(e) => setMaxSupply(e.target.value)}
+                  />
+                  {maxSupplyErr != '' && (
+                    <p className="error-msg">{maxSupplyErr}</p>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-      <div className="btn-botm-wrap">
-        <button type="submit" className="nextbtn" >
-          Next Step <img src="../imgs/next.svg" alt="" />
-        </button>
-      </div>
+        <div className="btn-botm-wrap">
+          <button type="submit" className="nextbtn">
+            Next Step <img src="../imgs/next.svg" alt="" />
+          </button>
+        </div>
       </form>
     </>
   );
