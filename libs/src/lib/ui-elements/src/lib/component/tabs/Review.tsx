@@ -139,7 +139,7 @@ export function Review(props: any) {
             <h3>Permission Management Details :</h3>
             <p className="wallet-address-list">Wallet Address</p>
             <div className="review-info">
-              <label htmlFor="">Cash In:</label>
+              <label htmlFor="">Mint:</label>
               <div className="hash-tag">
                 <span>{props.managementDetiails.cashWalletAddress}</span>{' '}
                 <button className="copybtn">Copy</button>

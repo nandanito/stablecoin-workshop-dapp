@@ -321,7 +321,10 @@ export function OperateStableCoinDetails(props: any) {
               {isSuccess && (
                 <a
                   target="_blank"
-                  href={'https://mumbai.polygonscan.com/tx/' + writeData?.hash}
+                  href={
+                    `${process.env.NEXT_PUBLIC_EXPLORER_URL}/tx/` +
+                    writeData?.hash
+                  }
                 >
                   Click here for transaction confirmation.
                 </a>

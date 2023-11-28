@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
-export function PermissionManagement(props : any) {
+export function PermissionManagement(props: any) {
   const [cashWalletAddress, setCashWalletAddress] = useState('');
   const [cashWalletAddressErr, setCashWalletAddressErr] = useState('');
   const [burnWalletAddress, setBurnWalletAddress] = useState('');
@@ -12,47 +12,47 @@ export function PermissionManagement(props : any) {
   const [pauseWalletAddress, setPauseWalletAddress] = useState('');
   const [pauseWalletAddressErr, setPauseWalletAddressErr] = useState('');
 
-  const handleNext = () => {    
+  const handleNext = () => {
     let error = 0;
-    if(cashWalletAddress == ''){
+    if (cashWalletAddress == '') {
       setCashWalletAddressErr('Please enter address');
       error = 1;
-    }else{
+    } else {
       setCashWalletAddressErr('');
     }
-    if(burnWalletAddress == ''){
+    if (burnWalletAddress == '') {
       setBurnWalletAddressErr('Please enter address');
       error = 1;
-    }else{
+    } else {
       setBurnWalletAddressErr('');
     }
-    if(wipeWalletAddress == ''){
+    if (wipeWalletAddress == '') {
       setWipeWalletAddressErr('Please enter address');
       error = 1;
-    }else{
+    } else {
       setWipeWalletAddressErr('');
     }
-    if(pauseWalletAddress == ''){
+    if (pauseWalletAddress == '') {
       setPauseWalletAddressErr('Please enter address');
       error = 1;
-    }else{
+    } else {
       setPauseWalletAddressErr('');
-    }    
-    if(error == 0){
+    }
+    if (error == 0) {
       let data = {
-        cashWalletAddress : cashWalletAddress,
-        wipeWalletAddress : wipeWalletAddress,
-        burnWalletAddress : burnWalletAddress,
-        pauseWalletAddress : pauseWalletAddress
-      }
+        cashWalletAddress: cashWalletAddress,
+        wipeWalletAddress: wipeWalletAddress,
+        burnWalletAddress: burnWalletAddress,
+        pauseWalletAddress: pauseWalletAddress,
+      };
       props.saveManagementDetails(data);
     }
-  }
+  };
   /* 
   const handleNext = () => {   
     props.nextBtn(2);
   }; */
-  const handlePrev = () => {   
+  const handlePrev = () => {
     props.nextBtn(0);
   };
   return (
@@ -63,17 +63,24 @@ export function PermissionManagement(props : any) {
       <div className="row mt-4">
         <div className="col-md-6 mb-4">
           <ul className="box-area">
-            <li>Cash In</li>
+            <li>Mint</li>
             <li>
               <div className="wallet-info">
                 <label htmlFor="">Wallet Address</label>
                 <div className="token-area">
-                  <input type="text" name="cashWalletAddress" value={cashWalletAddress} onChange={(e) => setCashWalletAddress(e.target.value)} />                  
+                  <input
+                    type="text"
+                    name="cashWalletAddress"
+                    value={cashWalletAddress}
+                    onChange={(e) => setCashWalletAddress(e.target.value)}
+                  />
                 </div>
-              </div>              
+              </div>
             </li>
           </ul>
-          {cashWalletAddressErr != "" && <p className="error-msg">{cashWalletAddressErr}</p> }
+          {cashWalletAddressErr != '' && (
+            <p className="error-msg">{cashWalletAddressErr}</p>
+          )}
         </div>
         <div className="col-md-6 mb-4">
           <ul className="box-area">
@@ -82,13 +89,19 @@ export function PermissionManagement(props : any) {
               <div className="wallet-info">
                 <label htmlFor="">Wallet Address</label>
                 <div className="token-area">
-                  <input type="text" name="wipeWalletAddress"  value={wipeWalletAddress} onChange={(e) => setWipeWalletAddress(e.target.value)}/>                  
+                  <input
+                    type="text"
+                    name="wipeWalletAddress"
+                    value={wipeWalletAddress}
+                    onChange={(e) => setWipeWalletAddress(e.target.value)}
+                  />
                 </div>
               </div>
-              
-            </li>            
+            </li>
           </ul>
-          {wipeWalletAddressErr != "" && <p className="error-msg">{wipeWalletAddressErr}</p> }
+          {wipeWalletAddressErr != '' && (
+            <p className="error-msg">{wipeWalletAddressErr}</p>
+          )}
         </div>
         <div className="col-md-6 mb-4">
           <ul className="box-area">
@@ -97,13 +110,20 @@ export function PermissionManagement(props : any) {
               <div className="wallet-info">
                 <label htmlFor="">Wallet Address</label>
                 <div className="token-area">
-                  <input type="text" name="burnWalletAddress" value={burnWalletAddress} onChange={(e) => setBurnWalletAddress(e.target.value)} />                  
+                  <input
+                    type="text"
+                    name="burnWalletAddress"
+                    value={burnWalletAddress}
+                    onChange={(e) => setBurnWalletAddress(e.target.value)}
+                  />
                 </div>
-              </div>              
+              </div>
             </li>
           </ul>
-          {burnWalletAddressErr != "" && <p className="error-msg">{burnWalletAddressErr}</p> }
-        </div>        
+          {burnWalletAddressErr != '' && (
+            <p className="error-msg">{burnWalletAddressErr}</p>
+          )}
+        </div>
         <div className="col-md-6 mb-4">
           <ul className="box-area">
             <li>Pause</li>
@@ -111,12 +131,19 @@ export function PermissionManagement(props : any) {
               <div className="wallet-info">
                 <label htmlFor="">Wallet Address</label>
                 <div className="token-area">
-                  <input type="text" name="pauseWalletAddress"  value={pauseWalletAddress} onChange={(e) => setPauseWalletAddress(e.target.value)}/>                  
+                  <input
+                    type="text"
+                    name="pauseWalletAddress"
+                    value={pauseWalletAddress}
+                    onChange={(e) => setPauseWalletAddress(e.target.value)}
+                  />
                 </div>
-              </div>              
+              </div>
             </li>
           </ul>
-          {pauseWalletAddressErr != "" && <p className="error-msg">{pauseWalletAddressErr}</p> }
+          {pauseWalletAddressErr != '' && (
+            <p className="error-msg">{pauseWalletAddressErr}</p>
+          )}
         </div>
       </div>
       <div className="btn-botm-wrap">

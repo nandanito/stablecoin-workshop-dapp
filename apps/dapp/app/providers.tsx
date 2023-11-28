@@ -17,8 +17,32 @@ import { polygon, polygonMumbai } from 'viem/chains';
     publicProvider()
   ]
 ); */
+const stablecoin: Chain = {
+  id: 42324,
+  name: 'StablecoinNetwork',
+  network: 'stablecoin',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'STB',
+    symbol: 'STB',
+  },
+  rpcUrls: {
+    public: {
+      http: [process.env.NEXT_PUBLIC_RPC_URL || ''],
+    },
+    default: {
+      http: [process.env.NEXT_PUBLIC_RPC_URL || ''],
+    },
+  },
+  blockExplorers: {
+    default: { name: 'Blockscout', url: 'https://blockscout.io' },
+    etherscan: { name: 'Blockscout', url: 'https://blockscout.io' },
+  },
+  testnet: false,
+};
+
 const { chains, provider, webSocketProvider } = configureChains(
-  [polygonMumbai as any],
+  [stablecoin as any],
   [
     jsonRpcProvider({
       rpc: () => ({
