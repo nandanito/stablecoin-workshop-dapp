@@ -18,7 +18,7 @@ import { polygon, polygonMumbai } from 'viem/chains';
   ]
 ); */
 const stablecoin: Chain = {
-  id: 42324,
+  id: Number(process.env.NEXT_PUBLIC_CHAIN_ID),
   name: 'StablecoinNetwork',
   network: 'stablecoin',
   nativeCurrency: {
