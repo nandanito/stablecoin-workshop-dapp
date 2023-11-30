@@ -35,8 +35,14 @@ const stablecoin: Chain = {
     },
   },
   blockExplorers: {
-    default: { name: 'Blockscout', url: 'https://blockscout.io' },
-    etherscan: { name: 'Blockscout', url: 'https://blockscout.io' },
+    default: {
+      name: 'Blockscout',
+      url: process.env.NEXT_PUBLIC_EXPLORER_URL || '',
+    },
+    etherscan: {
+      name: 'Blockscout',
+      url: process.env.NEXT_PUBLIC_EXPLORER_URL || '',
+    },
   },
   testnet: false,
 };
