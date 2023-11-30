@@ -14,15 +14,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export function Review(props: any) {
   const router = useRouter();
-  // const [supplyInWei, setSupplyinWei] = useState('');
-
-  console.log(
-    'weiiiiiii',
-    props.stablecoinDetiails.supplyInWei,
-    props.stablecoinDetiails.maxSupplyInWei
-  );
-  // console.log('weiiiiiii', web3.utils.toWei('1', 'ether'));
-
   const handlePrev = () => {
     props.nextBtn(2);
   };
